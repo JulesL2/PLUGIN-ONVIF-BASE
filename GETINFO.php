@@ -2,10 +2,10 @@
 
 session_start();
 
-function json_validate($test)
+function json_validate($_test)
 {
     // Decode pour test erreur
-    $result = json_decode($test);
+    $result = json_decode($_test);
 
     // Test erreur
 	
@@ -14,11 +14,11 @@ function json_validate($test)
         throw new Exception(JSONErrorMap::get(json_last_error()));
 		 // Exit sur exeption
 		echo "Erreur \n";
-		echo $error;
+		echo $_error;
 	}
 	// Fin sans erreur
-    $test2 = json_decode($test);
-	if ($test2 =='null' || $test2 =='')
+    $_test2 = json_decode($_test);
+	if ($_test2 =='null' || $_test2 =='')
 	{
 	throw new Exception('Fichier Vide');
 	}
@@ -266,5 +266,3 @@ echo "Liste ",$presets,"\n";
 echo "\n";
 /*===========================================*/
 ?>
-
-
