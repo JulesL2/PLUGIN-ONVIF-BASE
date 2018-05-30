@@ -1,0 +1,73 @@
+Aucune erreur
+IMAGE
+Luminosite 50
+Saturation 50
+Contraste 50
+Sharpness 50
+
+Aucune erreur
+NODES
+Xmax 1
+Xmin -1
+Ymax 1
+Ymin -1
+Zmax 1
+Zmin 1
+Nombre Max de Presets 300
+Nombre Max de Patrouille 8
+Home Support 1
+
+Aucune erreur
+INFO
+Manufacturer General
+Modele IP PTZ Dome
+FM 2.600.General 00.0.R, build: 2017-06-01
+SN 3HPAJ9EF51A2001
+
+Aucune erreur
+STREAM
+Stream URL rtsp://192.168.1.26:2048/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif
+
+Aucune erreur
+SNAP
+Snap URL http://192.168.1.26:8000:8000/onvifsnapshot/media_service/snapshot?channel=1&subtype=0
+
+Aucune erreur
+STATUS
+Position X 0.918778
+Position Y 0.236727
+Position Z 0
+Status Pan Tilt IDLE
+Status Zoom IDLE
+
+Aucune erreur
+HOST
+Nom Dahua
+
+Aucune erreur
+TOKEN
+Nom du profil MediaProfile_Channel1_MainStream
+Video Source Token 000
+Video Encoder Token 000
+Video Analytics Token 000
+Metadata Token 000
+PTZ Token 000
+Vitesse default X 0.8
+Vitesse default Y 0.8
+Vitesse default Z 0.8
+
+Aucune erreur
+Presets
+Liste {
+ "Preset": {
+  "Preset1": 1,
+  "Preset2": 2,
+  "Preset3": 3,
+  "Preset4": 4,
+  "Preset5": 5,
+  "Preset6": 6,
+  "Preset7": 7,
+  "Preset8": 8,
+  "Preset9": 9
+ }
+}
