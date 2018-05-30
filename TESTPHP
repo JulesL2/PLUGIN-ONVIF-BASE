@@ -1,7 +1,41 @@
 <?php
 
+session_start();
+
+function json_validate($test)
+{
+    // Decode pour test erreur
+    $result = json_decode($test);
+
+    // Test erreur
+	
+	if(json_last_error() != JSON_ERROR_NONE) 
+	{
+        throw new Exception(JSONErrorMap::get(json_last_error()));
+		 // Exit sur exeption
+		echo "Erreur \n";
+		echo $error;
+	}
+	// Fin sans erreur
+    $test2 = json_decode($test);
+	if ($test2 =='null' || $test2 =='')
+	{
+	throw new Exception('Fichier Vide');
+	}
+
+	echo "Aucune erreur \n";  
+    
+}
+
 // IMAGE GET FILE
 $image = shell_exec('node Dgetimage.js');
+
+
+// TEST DE LA VALIDITE DE LA SORTIE
+$sortieimage = json_validate($image);
+print_r($sortieimage);
+
+// SI LE FICHIER EST VALIDE ALORS
 $imagejson = json_decode($image, true);
 
 // IMAGE SETTINGS
@@ -9,6 +43,7 @@ $brightness = $imagejson['stream']['brightness'];
 $colorSaturation = $imagejson['stream']['colorSaturation'];
 $contrast = $imagejson['stream']['contrast'];
 $sharpness = $imagejson['stream']['sharpness'];
+
 
 // DISPLAY IMAGE SETTINGS
 echo "IMAGE \n";
@@ -18,37 +53,56 @@ echo "Contraste ",$contrast,"\n";
 echo "Sharpness ",$sharpness,"\n";
 echo "\n";
 
+
 // NODES GET FILE
 $node = shell_exec('node Dgetnodes.js');
+
+
+// TEST DE LA VALIDITE DE LA SORTIE DU SCRIPT
+$sortienode = json_validate($node);
+print_r($sortienode);
+
+// SI LE FICHIER EST VALIDE ALORS
 $nodejson = json_decode($node, true);
 
-// NODES GET VALUES
+
+// NODES VALUES
 $XRangeMax = $nodejson['nodes']['000']['supportedPTZSpaces']['absolutePanTiltPositionSpace']['XRange']['max'];
 $XRangeMin = $nodejson['nodes']['000']['supportedPTZSpaces']['absolutePanTiltPositionSpace']['XRange']['min'];
 $YRangeMax = $nodejson['nodes']['000']['supportedPTZSpaces']['absolutePanTiltPositionSpace']['YRange']['max'];
 $YRangeMin = $nodejson['nodes']['000']['supportedPTZSpaces']['absolutePanTiltPositionSpace']['YRange']['min'];
 $ZRangeMax = $nodejson['nodes']['000']['supportedPTZSpaces']['absoluteZoomPositionSpace']['XRange']['max'];
-$ZRangeMin = $nodejson['nodes']['000']['supportedPTZSpaces']['absoluteZoomPositionSpace']['XRange']['min'];
+$ZRangeMin = $nodejson['nodes']['000']['supportedPTZSpaces']['absoluteZoomPositionSpace']['XRange']['max'];
 
 
-//DISPLAY NODES VALUES
-echo "Nodes \n";
-echo "X Range Max ",$XRangeMax,"\n";
-echo "X Range Min ",$XRangeMin,"\n";
-echo "Y Range Max ",$YRangeMax,"\n";
-echo "Y Range Min ",$YRangeMin,"\n";
-echo "Z Range Max ",$ZRangeMax,"\n";
-echo "Z Range Min ",$ZRangeMin,"\n";
+// DISPLAY NODES VALUES
+echo "NODES \n";
+echo "Xmax ",$XRangeMax,"\n";
+echo "Xmin ",$XRangeMin,"\n";
+echo "Ymax ",$YRangeMax,"\n";
+echo "Ymin ",$YRangeMin,"\n";
+echo "Zmax ",$ZRangeMax,"\n";
+echo "Zmin ",$ZRangeMin,"\n";
+echo "\n";
+
 
 // GET INFO FILE
-$info = shell_exec('node Dgetinfo.js');
+$info = shell_exec('node Dgetdeviceinfo.js');
+
+// TEST DE LA VALIDITE DE LA SORTIE DU SCRIPT
+$sortienode = json_validate($info);
+print_r($sortienode);
+
+//SI LE FICHIER EST VALIDE ALORS
 $infojson = json_decode($info, true);
 
-// INFO GET VALUES
+
+// INFO VALUES
 $Manufacturer = $infojson['info']['manufacturer'];
 $Model = $infojson['info']['model'];
 $Firmware = $infojson['info']['firmwareVersion'];
 $Serial = $infojson['info']['serialNumber'];
+
 
 //DISPLAY
 echo "INFO \n";
@@ -57,15 +111,9 @@ echo "Modele ",$Model,"\n";
 echo "FM ",$Firmware,"\n";
 echo "SN ",$Serial,"\n";
 
-// PRESET GET FILE
-$preset = shell_exec('node Dgetpreset.js');
-$presetjson = json_decode($preset,true);
 
-// COUNT PRESETS
 
-// TAKE PRESET TOKEN
-$Preset1 = $presetjson ['preset'][
-$Preset2 =
-$Preset3 = 
 
 ?>
+
+
