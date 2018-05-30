@@ -223,15 +223,15 @@ print_r($sortieprofile);
 $profilejson = json_decode($profile, true);
 
 // PROFILE NAME/TOKEN
-$profilename = $profilejson['Profile']['name'];
-$VideoSourceToken = $profilejson['Profile']['videoSourceConfiguration']['$']['token'];
-$VideoEncoderToken = $profilejson['Profile']['videoEncoderConfiguration']['$']['token'];
-$VideoAnalyticsToken = $profilejson['Profile']['videoAnalyticsConfiguration']['$']['token'];
-$MetadataToken = $profilejson['Profile']['metadataConfiguration']['$']['token'];
-$PTZToken = $profilejson['Profile']['PTZConfiguration']['$']['token'];
-$PTZdefaultspeedX = $profilejson['Profile']['PTZConfiguration']['defaultPTZSpeed']['panTilt']['$']['x'];
-$PTZdefaultspeedY = $profilejson['Profile']['PTZConfiguration']['defaultPTZSpeed']['panTilt']['$']['y'];
-$PTZdefaultspeedZ = $profilejson['Profile']['PTZConfiguration']['defaultPTZSpeed']['zoom']['$']['x'];
+$profilename = $profilejson['Profile']['0']['name'];
+$VideoSourceToken = $profilejson['Profile']['0']['videoSourceConfiguration']['$']['token'];
+$VideoEncoderToken = $profilejson['Profile']['0']['videoEncoderConfiguration']['$']['token'];
+$VideoAnalyticsToken = $profilejson['Profile']['0']['videoAnalyticsConfiguration']['$']['token'];
+$MetadataToken = $profilejson['Profile']['0']['metadataConfiguration']['$']['token'];
+$PTZToken = $profilejson['Profile']['0']['PTZConfiguration']['$']['token'];
+$PTZdefaultspeedX = $profilejson['Profile']['0']['PTZConfiguration']['defaultPTZSpeed']['panTilt']['$']['x'];
+$PTZdefaultspeedY = $profilejson['Profile']['0']['PTZConfiguration']['defaultPTZSpeed']['panTilt']['$']['y'];
+$PTZdefaultspeedZ = $profilejson['Profile']['0']['PTZConfiguration']['defaultPTZSpeed']['zoom']['$']['x'];
 
 // DISPLAY TOKEN
 echo "TOKEN \n";
@@ -246,6 +246,24 @@ echo "Vitesse default Y ",$PTZdefaultspeedY,"\n";
 echo "Vitesse default Z ",$PTZdefaultspeedZ,"\n";
 echo "\n";
 
+/*===========================================*/
+
+// GET Preset FILE
+$presets = shell_exec('node DgetPresets.js');
+
+// TEST DE LA VALIDITE DE LA SORTIE DU SCRIPT
+$sortiepresets = json_validate($presets);
+print_r($sortiepresets);
+
+// SI LE FICHIER EST VALIDE ALORS
+$presetsjson = json_decode($presets, true);
+
+// FOREACH PRESETS
+
+// DISPLAY JSON PRESET
+echo "Presets \n";
+echo "Liste ",$presets,"\n";
+echo "\n";
 /*===========================================*/
 ?>
 
