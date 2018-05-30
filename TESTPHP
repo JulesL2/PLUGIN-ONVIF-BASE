@@ -45,6 +45,17 @@ $info = shell_exec('node Dgetinfo.js');
 $infojson = json_decode($info, true);
 
 // INFO GET VALUES
+$Manufacturer = $infojson['info']['manufacturer'];
+$Model = $infojson['info']['model'];
+$Firmware = $infojson['info']['firmwareVersion'];
+$Serial = $infojson['info']['serialNumber'];
+
+//DISPLAY
+echo "INFO \n";
+echo "Manufacturer ",$Manufacturer,"\n";
+echo "Modele ",$Model,"\n";
+echo "FM ",$Firmware,"\n";
+echo "SN ",$Serial,"\n";
 
 // PRESET GET FILE
 $preset = shell_exec('node Dgetpreset.js');
