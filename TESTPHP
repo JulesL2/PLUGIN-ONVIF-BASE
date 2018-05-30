@@ -1,0 +1,60 @@
+<?php
+
+// IMAGE GET FILE
+$image = shell_exec('node Dgetimage.js');
+$imagejson = json_decode($image, true);
+
+// IMAGE SETTINGS
+$brightness = $imagejson['stream']['brightness'];
+$colorSaturation = $imagejson['stream']['colorSaturation'];
+$contrast = $imagejson['stream']['contrast'];
+$sharpness = $imagejson['stream']['sharpness'];
+
+// DISPLAY IMAGE SETTINGS
+echo "IMAGE \n";
+echo "Luminosite ",$brightness,"\n";
+echo "Saturation ",$colorSaturation,"\n";
+echo "Contraste ",$contrast,"\n";
+echo "Sharpness ",$sharpness,"\n";
+echo "\n";
+
+// NODES GET FILE
+$node = shell_exec('node Dgetnodes.js');
+$nodejson = json_decode($node, true);
+
+// NODES GET VALUES
+$XRangeMax = $nodejson['nodes']['000']['supportedPTZSpaces']['absolutePanTiltPositionSpace']['XRange']['max'];
+$XRangeMin = $nodejson['nodes']['000']['supportedPTZSpaces']['absolutePanTiltPositionSpace']['XRange']['min'];
+$YRangeMax = $nodejson['nodes']['000']['supportedPTZSpaces']['absolutePanTiltPositionSpace']['YRange']['max'];
+$YRangeMin = $nodejson['nodes']['000']['supportedPTZSpaces']['absolutePanTiltPositionSpace']['YRange']['min'];
+$ZRangeMax = $nodejson['nodes']['000']['supportedPTZSpaces']['absoluteZoomPositionSpace']['XRange']['max'];
+$ZRangeMin = $nodejson['nodes']['000']['supportedPTZSpaces']['absoluteZoomPositionSpace']['XRange']['min'];
+
+
+//DISPLAY NODES VALUES
+echo "Nodes \n";
+echo "X Range Max ",$XRangeMax,"\n";
+echo "X Range Min ",$XRangeMin,"\n";
+echo "Y Range Max ",$YRangeMax,"\n";
+echo "Y Range Min ",$YRangeMin,"\n";
+echo "Z Range Max ",$ZRangeMax,"\n";
+echo "Z Range Min ",$ZRangeMin,"\n";
+
+// GET INFO FILE
+$info = shell_exec('node Dgetinfo.js');
+$infojson = json_decode($info, true);
+
+// INFO GET VALUES
+
+// PRESET GET FILE
+$preset = shell_exec('node Dgetpreset.js');
+$presetjson = json_decode($preset,true);
+
+// COUNT PRESETS
+
+// TAKE PRESET TOKEN
+$Preset1 = $presetjson ['preset'][
+$Preset2 =
+$Preset3 = 
+
+?>
