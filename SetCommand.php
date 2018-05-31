@@ -2,10 +2,10 @@
 class CommandsONVIF {
 	private $Username;
 	private $Password;
-	public $IPadress;
-	public $Port;
-	public $VideoToken;
-	public $PTZToken;	
+	private $IPadress;
+	private $Port;
+	private $VideoToken;
+	private $PTZToken;	
 
 	public function Gethost($Username, $Password, $IPadress, $Port) {
 		sendVarToJs('adressip', $IPadress);
