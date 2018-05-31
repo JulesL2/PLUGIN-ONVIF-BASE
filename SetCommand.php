@@ -12,7 +12,7 @@ class CommandsONVIF {
 		sendVarToJs('username', $Username);
 		sendVarToJs('password', $Password);
 		sendVarToJs('port', $Port);
-		shell_exec('node gethost.js');
+		$host = shell_exec('node gethost.js');
 	}
 
 }
