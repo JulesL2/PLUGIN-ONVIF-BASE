@@ -28,7 +28,7 @@ function json_validate($_test)
 }
 
 // IMAGE GET FILE
-$image = shell_exec('node Dgetimage.js');
+$image = shell_exec('node getimage.js');
 
 
 // TEST DE LA VALIDITE DE LA SORTIE
@@ -57,7 +57,7 @@ echo "\n";
 /*===========================================*/
 
 // NODES GET FILE
-$node = shell_exec('node Dgetnodes.js');
+$node = shell_exec('node getnodes.js');
 
 
 // TEST DE LA VALIDITE DE LA SORTIE DU SCRIPT
@@ -95,7 +95,7 @@ echo "\n";
 /*===========================================*/
 
 // GET INFO FILE
-$info = shell_exec('node Dgetdeviceinfo.js');
+$info = shell_exec('node getdeviceinfo.js');
 
 // TEST DE LA VALIDITE DE LA SORTIE DU SCRIPT
 $sortienode = json_validate($info);
@@ -123,7 +123,7 @@ echo "\n";
 /*===========================================*/
 
 // GET STREAM FILE
-$stream = shell_exec('node Dgetstream.js');
+$stream = shell_exec('node getstream.js');
 
 // TEST DE LA VALIDITE DE LA SORTIE DU SCRIPT
 $sortiestream = json_validate($stream);
@@ -145,7 +145,7 @@ echo "\n";
 /*===========================================*/
 
 // GET SNAP FILE
-$snap = shell_exec('node Dgetsnapshot.js');
+$snap = shell_exec('node getsnapshot.js');
 
 // TEST DE LA VALIDITE DE LA SORTIE DU SCRIPT
 $sortiesnap = json_validate($snap);
@@ -165,7 +165,7 @@ echo "\n";
 /*===========================================*/
 
 // GET STATUS FILE
-$statuscam = shell_exec('node DgetStatus.js');
+$statuscam = shell_exec('node getStatus.js');
 
 // TEST DE LA VALIDITE DE LA SORTIE DU SCRIPT
 $sortiestatuscam = json_validate($statuscam);
@@ -193,7 +193,7 @@ echo "\n";
 /*===========================================*/
 
 // GET Host FILE
-$host = shell_exec('node Dgethost.js');
+$host = shell_exec('node gethost.js');
 
 // TEST DE LA VALIDITE DE LA SORTIE DU SCRIPT
 $sortiehost = json_validate($host);
@@ -213,7 +213,7 @@ echo "\n";
 /*===========================================*/
 
 // GET PROFILE FILE 
-$profile = shell_exec('node Dgetprofile.js');
+$profile = shell_exec('node getprofile.js');
 
 // TEST DE LA VALIDITE DE LA SORTIE DU SCRIPT
 $sortieprofile = json_validate($profile);
@@ -249,7 +249,7 @@ echo "\n";
 /*===========================================*/
 
 // GET Preset FILE
-$presets = shell_exec('node DgetPresets.js');
+$presets = shell_exec('node getPresets.js');
 
 // TEST DE LA VALIDITE DE LA SORTIE DU SCRIPT
 $sortiepresets = json_validate($presets);
