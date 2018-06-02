@@ -45,7 +45,6 @@ class HostONVIF
     
     public function setPort($Port)
     {
-    // On vérifie qu'il s'agit bien d'un nombre
       $this->_Port = $Port;
       echo "Port Bien Effectue\n";
     }
