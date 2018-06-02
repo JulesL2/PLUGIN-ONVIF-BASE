@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
+require_once __DIR__ . '/../../../../core/php/core.inc.php';
 
 class HostONVIF
 
@@ -24,46 +24,51 @@ class HostONVIF
 // LISTE DES SETTERS
     public function setUsername($Username)
     {
-    // On vérifie qu'il s'agit bien d'une chaîne de caractères.
-    if (is_string($Username))
-    {
       $this->_Username = $Username;
-    }
-    echo "ce n'est pas une chaine de caractère";
+      echo "Username Bien Effectue\n";
     }
 
 
     public function setPassword($Password)
     {
       $this->_Password = $Password;
+      echo "Password Bien Effectue\n";
     }
     
     
     public function setIPadress($IPadress)
     {
       $this->_IPadress = $IPadress;
+      echo "IP Bien Effectue\n";
     }
     
     
     public function setPort($Port)
     {
     // On vérifie qu'il s'agit bien d'un nombre
-    if (is_int($Port))
-    {
       $this->_Port = $Port;
-    }
-    echo "ce n'est pas un nombre";
+      echo "Port Bien Effectue\n";
     }
    
    
     public function Gethost() 
     {
-        
-		sendVarToJs('adressip', $_IPadress);
-		sendVarToJs('username', $_Username);
-		sendVarToJs('password', $_Password);
-		sendVarToJs('port', $_Port);
-        echo "Variable Transmises";
+
+        //      PROBLEME ICI
+
+        $A -> IPadress($A);
+        $B -> Username($B);
+        $C -> Password($C);
+        $D -> Port($D);
+        echo $A,"\n";
+        echo $B,"\n";
+        echo $C,"\n";
+        echo $D,"\n";
+		sendVarToJs('adressip', $A);
+		sendVarToJs('username', $B);
+		sendVarToJs('password', $C);
+		sendVarToJs('port', $D);
+        echo "Variable Transmises \n";
 	}
 
 
@@ -124,14 +129,20 @@ $data = [
 
   'Password' => 'password',
 
-  'IPadress' => '192.168.1.26',
+  'IPadress' => 'ip',
 
   'Port' => 8000,
 ];
 
+
 $hostid->hydrate($data);
 
-$host = shell_exe('node gethost.js');
+
+echo "Passage a l'execution du node \n";
+
+$host = shell_exec('node gethost.js');
+
+
 // TEST DE LA VALIDITE DE LA SORTIE DU SCRIPT
 $sortiehost = json_validate($host);
 print_r($sortiehost);
