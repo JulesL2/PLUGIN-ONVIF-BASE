@@ -122,7 +122,7 @@ $data = [
 
   'Username' => 'admin',
 
-  'Password' => 'chiquita20',
+  'Password' => 'password',
 
   'IPadress' => '192.168.1.26',
 
