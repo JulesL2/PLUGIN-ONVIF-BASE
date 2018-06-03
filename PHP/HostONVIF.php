@@ -12,6 +12,13 @@ class HostONVIF
     private $_VideoToken;
     private $_PTZToken; 
     private $_data;
+    private $_Xmin;
+    private $_Xmax;
+    private $_Ymin;
+    private $_Ymax;
+    private $_Zmin;
+    private $_Zmax;
+
 
 // LISTE DES GETTERS
     public function __get($att)
@@ -39,7 +46,37 @@ class HostONVIF
     {
         return $this->_Port;
     }
-    
+
+    public function getXmin()
+    {
+        return $this->_Xmin;
+    }
+        
+    public function getXmax()
+    {
+        return $this->_Xmax;
+    }
+        
+    public function getYmin()
+    {
+        return $this->_Ymin;
+    }
+        
+    public function getYmax()
+    {
+        return $this->_Ymax;
+    }
+        
+    public function getZmin()
+    {
+        return $this->_Zmin;
+    }
+
+    public function getZmax()
+    {
+        return $this->_Zmax;
+    }
+
 // LISTE DES SETTERS
     public function setUsername($Username)
     {
@@ -64,7 +101,43 @@ class HostONVIF
   
       $this->_Port = $Port;
     }
+    
 
+    public function setXmin($XMIN)
+    {
+  
+      $this->_Xmin = $XMIN;
+    }
+
+    public function setXmax($XMAX)
+    {
+  
+      $this->_Xmax = $XMAX;
+    }
+
+    public function setYmin($YMIN)
+    {
+  
+      $this->_Ymin = $YMIN;
+    }
+
+    public function setYmax($YMAX)
+    {
+  
+      $this->_Ymin = $YMAX;
+    }
+
+    public function setZmin($ZMIN)
+    {
+  
+      $this->_Zmin = $ZMIN;
+    }
+
+    public function setZmax($ZMAX)
+    {
+  
+      $this->_Zmax = $ZMAX;
+    }
 
     public function hydrate(array $donnees)
 
@@ -311,6 +384,14 @@ class HostONVIF
         $PresetMax = $nodejson['nodes']['000']['maximumNumberOfPresets'];
         $HomeSupport = $nodejson['nodes']['000']['homeSupported'];
         $PatrolMax = $nodejson['nodes']['000']['extension']['supportedPresetTour']['maximumNumberOfPresetTours'];
+
+        // PUT VALUES TO PRIVATE
+        $this -> setXmin($XrangeMin);
+        $this -> setXmax($XRangeMax);
+        $this -> setYmin($YrangeMin);
+        $this -> setYmax($YRangeMax);
+        $this -> setZmin($ZrangeMin);
+        $this -> setZmax($ZRangeMax);        
 
         // DISPLAY NODES VALUES
         /*
@@ -588,6 +669,71 @@ class HostONVIF
             $variable = 1;
         }
     }
+
+
+        public function intervalX($variable)
+    {
+        $Xminimum = $this -> getXmin();
+        $Xmaximum = $this -> getXmax();
+
+        if (gettype($variable) == integer || gettype($variable) == double)
+        {
+            if (abs($variable) < abs($Xminimum) && $variable<=$Xmaximum)
+            {
+                // Aucun Probleme
+            }
+            else $variable = 0;
+        }
+        else
+        {
+            settype($variable , integer);
+            $variable = 0;
+        }
+    }
+
+
+        public function intervalY($variable)
+    {
+        $Yminimum = $this -> getYmin();
+        $Ymaximum = $this -> getYmax();
+
+        if (gettype($variable) == integer || gettype($variable) == double)
+        {
+            if (abs($variable) < abs($Yminimum) && $variable<=$Ymaximum)
+            {
+                // Aucun Probleme
+            }
+            else $variable = 0;
+        }
+        else
+        {
+            settype($variable , integer);
+            $variable = 0;
+        }
+    }
+
+
+        public function intervalZ($variable)
+    {
+        $Zminimum = $this -> getZmin();
+        $Zmaximum = $this -> getZmax();
+
+        if (gettype($variable) == integer || gettype($variable) == double)
+        {
+            if (abs($variable) < abs($Zminimum) && $variable<=$Zmaximum)
+            {
+                // Aucun Probleme
+            }
+            else $variable = 0;
+        }
+        else
+        {
+            settype($variable , integer);
+            $variable = 0;
+        }
+    }
+
+
         public function gotohome($Xspeed,$Yspeed,$Zspeed)
     {
 
@@ -630,9 +776,9 @@ class HostONVIF
         $Password = $this->_Password;
         $Username = $this->_Username;
 
-        $this -> interval($X);
-        $this -> interval($Y);
-        $this -> interval($Z);
+        $this -> intervalX($X);
+        $this -> intervalY($Y);
+        $this -> intervalZ($Z);
 
         $this -> interval($Xspeed);
         $this -> interval($Yspeed);
@@ -789,17 +935,19 @@ class HostONVIF
         $commande .= $IPadress;
         $commande .= " --Port=";
         $commande .= $Port;
-        $commande .= " --Brightness";
+        $commande .= " --Brightness=";
         $commande .= $brightness;
-        $commande .= " --ColorSaturation";
+        $commande .= " --ColorSaturation=";
         $commande .= $colorsaturation;
-        $commande .= " --Contrast";
+        $commande .= " --Contrast=";
+        $commande .= $contrast;
+        $commande .= " --Sharpness=";
         $commande .= $sharpness;
-        $commande .= " --Sharpness";
         //Display final shell command
         //echo $commande,"\n";
 
         $setimage = shell_exec($commande);
-        // echo $setimage;
+        //echo $setimage;
     }
 }
+
