@@ -23,46 +23,39 @@ class HostONVIF
     {
         
         return $this->_Username;
-        echo "get bien effectue";
     }
     
     public function getPassword()
     {
-        return $this->_Password;
-        echo "get bien effectue"; 
+        return $this->_Password; 
     }
     
     public function getIPadress()
     {
         return $this->_IPadress;
-        echo "get bien effectue";
     }
     
     public function getPort()
     {
         return $this->_Port;
-        echo "get bien effectue";
     }
     
 // LISTE DES SETTERS
     public function setUsername($Username)
     {
       $this->_Username = $Username;
-      echo "Username Bien Effectue\n";
     }
 
 
     public function setPassword($Password)
     {
       $this->_Password = $Password;
-      echo "Password Bien Effectue\n";
     }
     
     
     public function setIPadress($IPadress)
     {
       $this->_IPadress = $IPadress;
-      echo "IP Bien Effectue\n";
     }
     
     
@@ -70,7 +63,6 @@ class HostONVIF
     {
   
       $this->_Port = $Port;
-      echo "Port Bien Effectue\n";
     }
 
 
@@ -97,5 +89,74 @@ class HostONVIF
 
             } 
     }
+    
 
+    public function json_validate($_test)
+    {
+    // Decode pour test erreur
+    $result = json_decode($_test);
+
+
+    if(json_last_error() != JSON_ERROR_NONE) 
+    {
+        throw new Exception(json_last_error());
+         // Exit sur exeption
+        echo "Erreur \n";
+        echo $_error;
+    }
+    // Fin sans erreur
+    $_test2 = json_decode($_test);
+    if ($_test2 =='null' || $_test2 =='')
+    {
+    throw new Exception('Fichier Vide');
+    }
+
+    echo "Aucune erreur \n";  
+    
+    }
+
+
+    public function gethost()
+
+    {
+        //THIS COMMAND GIVE TO $name THE NAME OF THE CAM
+
+
+        $Port     = $this->_Port;
+        $IPadress = $this->_IPadress;
+        $Password = $this->_Password;
+        $Username = $this->_Username;
+
+        
+        $commande = "node gethost.js  --Username=";
+        $commande .= $Username;
+        $commande .= " --Password=";
+        $commande .= $Password;
+        $commande .= " --IPadress=";
+        $commande .= $IPadress;
+        $commande .= " --Port=";
+        $commande .= $Port;
+
+        //Display final shell command
+        //echo $commande,"\n";
+
+        $host = shell_exec($commande);
+
+
+        // TEST DE LA VALIDITE DE LA SORTIE DU SCRIPT
+        $this -> json_validate($host);
+
+        // SI LE FICHIER EST VALIDE ALORS
+        print_r($host);
+
+        $hostjson = json_decode($host, true);
+
+        // NOM SUR LE RESEAU
+        $name = $hostjson['host']['name'];
+
+        // DISPLAY NAME
+        //echo "HOST \n";
+        //echo "Nom ",$name,"\n";
+        //echo "\n";      
+    }
 }
