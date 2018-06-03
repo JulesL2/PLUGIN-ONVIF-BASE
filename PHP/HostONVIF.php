@@ -572,4 +572,234 @@ class HostONVIF
         echo "\n";
         */
     } 
+        public function interval($variable)
+    {
+        if (gettype($variable) == integer || gettype($variable) == double)
+        {
+            if (0 < $variable && $variable<=1)
+            {
+                // Aucun Probleme
+            }
+            else $variable = 1;
+        }
+        else
+        {
+            settype($variable , integer);
+            $variable = 1;
+        }
+    }
+        public function gotohome($Xspeed,$Yspeed,$Zspeed)
+    {
+
+        $Port     = $this->_Port;
+        $IPadress = $this->_IPadress;
+        $Password = $this->_Password;
+        $Username = $this->_Username;
+
+        $this -> interval($Xspeed);
+        $this -> interval($Yspeed);
+        $this -> interval($Zspeed);
+
+        $commande = "node gotohome.js  --Username=";
+        $commande .= $Username;
+        $commande .= " --Password=";
+        $commande .= $Password;
+        $commande .= " --IPadress=";
+        $commande .= $IPadress;
+        $commande .= " --Port=";
+        $commande .= $Port;
+        $commande .= " --Xspeed=";
+        $commande .= $Xspeed;
+        $commande .= " --Yspeed=";
+        $commande .= $Yspeed;
+        $commande .= " --Zspeed=";
+        $commande .= $Zspeed;
+
+
+        //Display final shell command
+        //echo $commande,"\n";
+
+        $gotohome = shell_exec($commande);
+        // echo $gotohome;
+    } 
+        public function relativemove($X,$Y,$Z,$Xspeed,$Yspeed,$Zspeed)
+    {
+
+        $Port     = $this->_Port;
+        $IPadress = $this->_IPadress;
+        $Password = $this->_Password;
+        $Username = $this->_Username;
+
+        $this -> interval($X);
+        $this -> interval($Y);
+        $this -> interval($Z);
+
+        $this -> interval($Xspeed);
+        $this -> interval($Yspeed);
+        $this -> interval($Zspeed);
+
+        $commande = "node relativemove.js  --Username=";
+        $commande .= $Username;
+        $commande .= " --Password=";
+        $commande .= $Password;
+        $commande .= " --IPadress=";
+        $commande .= $IPadress;
+        $commande .= " --Port=";
+        $commande .= $Port;
+        $commande .= " --X=";
+        $commande .= $X;
+        $commande .= " --Y=";
+        $commande .= $Y;
+        $commande .= " --Z=";
+        $commande .= $Z;
+        $commande .= " --Xspeed=";
+        $commande .= $Xspeed;
+        $commande .= " --Yspeed=";
+        $commande .= $Yspeed;
+        $commande .= " --Zspeed=";
+        $commande .= $Zspeed;
+
+
+        //Display final shell command
+        //echo $commande,"\n";
+
+        $relativemove = shell_exec($commande);
+        // echo $gotohome;
+    } 
+
+
+        public function removepreset($token)
+    {
+
+        $Port     = $this->_Port;
+        $IPadress = $this->_IPadress;
+        $Password = $this->_Password;
+        $Username = $this->_Username;
+
+        $commande = "node removepreset.js  --Username=";
+        $commande .= $Username;
+        $commande .= " --Password=";
+        $commande .= $Password;
+        $commande .= " --IPadress=";
+        $commande .= $IPadress;
+        $commande .= " --Port=";
+        $commande .= $Port;
+        $commande .= " --PresetToken=";
+        $commande .= $token;
+
+
+        //Display final shell command
+        //echo $commande,"\n";
+
+        $removepreset = shell_exec($commande);
+        // echo $removepreset;
+    } 
+
+        public function setpreset($name)
+    {
+
+        $Port     = $this->_Port;
+        $IPadress = $this->_IPadress;
+        $Password = $this->_Password;
+        $Username = $this->_Username;
+
+        $commande = "node setpreset.js  --Username=";
+        $commande .= $Username;
+        $commande .= " --Password=";
+        $commande .= $Password;
+        $commande .= " --IPadress=";
+        $commande .= $IPadress;
+        $commande .= " --Port=";
+        $commande .= $Port;
+        $commande .= " --PresetName=";
+        $commande .= $name;
+
+
+        //Display final shell command
+        //echo $commande,"\n";
+
+        $setpreset = shell_exec($commande);
+        // echo $setpreset;
+    } 
+
+        public function gotopreset($token)
+    {
+
+        $Port     = $this->_Port;
+        $IPadress = $this->_IPadress;
+        $Password = $this->_Password;
+        $Username = $this->_Username;
+
+        $commande = "node gotopreset.js  --Username=";
+        $commande .= $Username;
+        $commande .= " --Password=";
+        $commande .= $Password;
+        $commande .= " --IPadress=";
+        $commande .= $IPadress;
+        $commande .= " --Port=";
+        $commande .= $Port;
+        $commande .= " --PresetToken=";
+        $commande .= $token;
+
+
+        //Display final shell command
+        //echo $commande,"\n";
+
+        $gotopreset = shell_exec($commande);
+        // echo $gotopreset;
+    } 
+
+    public function reboot()
+    {
+
+        $Port     = $this->_Port;
+        $IPadress = $this->_IPadress;
+        $Password = $this->_Password;
+        $Username = $this->_Username;
+
+        $commande = "node reboot.js  --Username=";
+        $commande .= $Username;
+        $commande .= " --Password=";
+        $commande .= $Password;
+        $commande .= " --IPadress=";
+        $commande .= $IPadress;
+        $commande .= " --Port=";
+        $commande .= $Port;
+
+        //Display final shell command
+        //echo $commande,"\n";
+
+        $reboot = shell_exec($commande);
+        // echo $reboot;
+    }
+
+    public function setimagesettings($brightness,$colorsaturation,$contrast,$sharpness)
+    {
+
+        $Port     = $this->_Port;
+        $IPadress = $this->_IPadress;
+        $Password = $this->_Password;
+        $Username = $this->_Username;
+
+        $commande = "node setimagesettings.js  --Username=";
+        $commande .= $Username;
+        $commande .= " --Password=";
+        $commande .= $Password;
+        $commande .= " --IPadress=";
+        $commande .= $IPadress;
+        $commande .= " --Port=";
+        $commande .= $Port;
+        $commande .= " --Brightness";
+        $commande .= $brightness;
+        $commande .= " --ColorSaturation";
+        $commande .= $colorsaturation;
+        $commande .= " --Contrast";
+        $commande .= $sharpness;
+        $commande .= " --Sharpness";
+        //Display final shell command
+        //echo $commande,"\n";
+
+        $setimage = shell_exec($commande);
+        // echo $setimage;
+    }
 }
