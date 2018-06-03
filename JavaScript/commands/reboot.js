@@ -11,10 +11,9 @@ var CAMERA_HOST = DATA.IPadress,
 	USERNAME = DATA.Username,
 	PASSWORD = DATA.Password,
 	PORT = DATA.Port,
-	Xspeed = DATA.Xspeed,
-	Yspeed = DATA.Yspeed,
-	Zspeed = DATA.Zspeed;
-	
+
+
+
 
 new Cam({
 	hostname: CAMERA_HOST,
@@ -27,5 +26,7 @@ new Cam({
 		return;
 	}
 
-this.gotoHomePosition({speed:{x:Xspeed, y:Yspeed , zoom:Zspeed}},function(err, home) {console.log(home)});
+this.systemReboot(function(err, reboot) {
+console.log(reboot);
+});
 });

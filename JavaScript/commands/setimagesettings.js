@@ -11,11 +11,11 @@ var CAMERA_HOST = DATA.IPadress,
 	USERNAME = DATA.Username,
 	PASSWORD = DATA.Password,
 	PORT = DATA.Port,
-	Xspeed = DATA.Xspeed,
-	Yspeed = DATA.Yspeed,
-	Zspeed = DATA.Zspeed;
+ 	BRIGHTNESS = DATA.Brightness,
+	COLORSATURATION = DATA.ColorSaturation,
+	CONTRAST = DATA.Contrast,
+	SHARPNESS = DATA.Sharpness;
 	
-
 new Cam({
 	hostname: CAMERA_HOST,
 	username: USERNAME,
@@ -27,5 +27,13 @@ new Cam({
 		return;
 	}
 
-this.gotoHomePosition({speed:{x:Xspeed, y:Yspeed , zoom:Zspeed}},function(err, home) {console.log(home)});
+this.setImagingSettings({
+brightness: BRIGHTNESS,
+colorSaturation: COLORSATURATION,
+contrast: CONTRAST,
+sharpness: SHARPNESS,
+},function(err, image) {
+console.log(image);
+});
+
 });

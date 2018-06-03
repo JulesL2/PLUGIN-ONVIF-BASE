@@ -11,10 +11,9 @@ var CAMERA_HOST = DATA.IPadress,
 	USERNAME = DATA.Username,
 	PASSWORD = DATA.Password,
 	PORT = DATA.Port,
-	Xspeed = DATA.Xspeed,
-	Yspeed = DATA.Yspeed,
-	Zspeed = DATA.Zspeed;
-	
+	TOKEN = DATA.PresetToken;
+
+
 
 new Cam({
 	hostname: CAMERA_HOST,
@@ -27,5 +26,5 @@ new Cam({
 		return;
 	}
 
-this.gotoHomePosition({speed:{x:Xspeed, y:Yspeed , zoom:Zspeed}},function(err, home) {console.log(home)});
+this.gotoPreset({preset:'TOKEN'},function(err, gotopreset) {console.log(gotopreset)});
 });

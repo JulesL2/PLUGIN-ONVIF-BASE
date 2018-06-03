@@ -7,14 +7,13 @@ minimistoptions= {string:['Port']};
 var DATA = require('minimist')(process.argv.slice(2),minimistoptions);
 delete DATA['_'];
 
+
 var CAMERA_HOST = DATA.IPadress,
 	USERNAME = DATA.Username,
 	PASSWORD = DATA.Password,
 	PORT = DATA.Port,
-	Xspeed = DATA.Xspeed,
-	Yspeed = DATA.Yspeed,
-	Zspeed = DATA.Zspeed;
-	
+	PRESETTOKEN = DATA.PresetToken;
+
 
 new Cam({
 	hostname: CAMERA_HOST,
@@ -27,5 +26,5 @@ new Cam({
 		return;
 	}
 
-this.gotoHomePosition({speed:{x:Xspeed, y:Yspeed , zoom:Zspeed}},function(err, home) {console.log(home)});
+this.removePreset({presetToken:PRESETTOKEN},function(err, rmpreset) {console.log(rmpreset)});
 });
