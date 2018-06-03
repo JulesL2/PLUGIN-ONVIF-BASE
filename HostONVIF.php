@@ -155,10 +155,11 @@ class HostONVIF
 
         //DISPLAY NAME
         
-        
+        /* 
         echo "HOST \n";
         echo "Nom ",$name,"\n";
         echo "\n";
+        */
               
     }
 
@@ -204,12 +205,14 @@ class HostONVIF
 
 
         //DISPLAY
+        /*
         echo "INFO \n";
         echo "Manufacturer ",$Manufacturer,"\n";
         echo "Modele ",$Model,"\n";
         echo "FM ",$Firmware,"\n";
         echo "SN ",$Serial,"\n";
-        echo "\n";            
+        echo "\n";  
+        */          
     }
 
         public function getimage()
@@ -254,12 +257,14 @@ class HostONVIF
 
 
         // DISPLAY IMAGE SETTINGS
+        /*
         echo "IMAGE \n";
         echo "Luminosite ",$brightness,"\n";
         echo "Saturation ",$colorSaturation,"\n";
         echo "Contraste ",$contrast,"\n";
         echo "Sharpness ",$sharpness,"\n";
         echo "\n";
+        */
     }
 
         public function getnodes()
@@ -308,6 +313,7 @@ class HostONVIF
         $PatrolMax = $nodejson['nodes']['000']['extension']['supportedPresetTour']['maximumNumberOfPresetTours'];
 
         // DISPLAY NODES VALUES
+        /*
         echo "NODES \n";
         echo "Xmax ",$XRangeMax,"\n";
         echo "Xmin ",$XRangeMin,"\n";
@@ -319,6 +325,7 @@ class HostONVIF
         echo "Nombre Max de Patrouille ",$PatrolMax,"\n";
         echo "Home Support ",$HomeSupport,"\n";
         echo "\n";
+        */
     }
 
 
@@ -361,9 +368,11 @@ class HostONVIF
 
 
         // DISPLAY STREAM URL
+        /*
         echo "STREAM \n";
         echo "Stream URL ",$StreamUri,"\n";
         echo "\n";
+        */
 
     }
         public function getsnap()
@@ -403,9 +412,11 @@ class HostONVIF
         $SnapUri = $snapjson['snap']['uri'];
 
         // DISPLAY SNAP URL
+        /*
         echo "SNAP \n";
         echo "Snap URL ",$SnapUri,"\n";
         echo "\n";
+        */
     }
 
         public function getstatus()
@@ -449,6 +460,7 @@ class HostONVIF
         $MoveStatusZ = $statuscamjson['status']['moveStatus']['zoom'];
 
         // DISPLAY COORD + IDLE/NOT
+        /*
         echo "STATUS \n";
         echo "Position X ",$PositionX,"\n";
         echo "Position Y ",$PositionY,"\n";
@@ -456,6 +468,7 @@ class HostONVIF
         echo "Status Pan Tilt ",$MoveStatusPT,"\n";
         echo "Status Zoom ",$MoveStatusZ,"\n";
         echo "\n";
+        */
     }
 
         public function getprofile()
@@ -502,6 +515,7 @@ class HostONVIF
         $PTZdefaultspeedZ = $profilejson['Profile']['0']['PTZConfiguration']['defaultPTZSpeed']['zoom']['$']['x'];
 
         // DISPLAY TOKEN
+        /*
         echo "TOKEN \n";
         echo "Nom du profil ",$profilename,"\n";
         echo "Video Source Token ",$VideoSourceToken,"\n";
@@ -513,6 +527,7 @@ class HostONVIF
         echo "Vitesse default Y ",$PTZdefaultspeedY,"\n";
         echo "Vitesse default Z ",$PTZdefaultspeedZ,"\n";
         echo "\n";
+        */
     }
 
         public function getpresets()
@@ -551,9 +566,10 @@ class HostONVIF
         // FOREACH PRESETS
 
         // DISPLAY JSON PRESET
+        /*
         echo "Presets \n";
         echo "Liste ",$presets,"\n";
         echo "\n";
+        */
     } 
 }
-
